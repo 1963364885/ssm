@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserDao">
+    <resultMap type="User" id="userResultMap" >
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <insert id="add" >
+        INSERT INTO user(username,password,name) VALUE (#{Pojo.username},#{Pojo.password},#{Pojo.name})
+    </insert>
+
+    <delete id="del" >
+        DELETE FROM user WHERE id=#{Pojo.id}
+    </delete>
+
+    <update id="update" >
+        UPDATE user SET username=#{Pojo.username},password=#{Pojo.password},name=#{Pojo.name}
+        WHERE  id = #{Pojo.id}
+    </update>
+
+    <select id="search" resultMap="userResultMap">
+        SELECT * FROM user
+    </select>
+</mapper>
